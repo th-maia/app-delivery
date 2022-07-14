@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 
 function Login() {
@@ -17,6 +18,8 @@ function Login() {
       setDesabilitaBtn(true);
     }
   }, [email, senha]);
+
+  const history = useHistory();
 
   return (
     <div>
@@ -38,7 +41,10 @@ function Login() {
         type="button"
         data-testid="login-submit-btn"
         disabled={ desabilitaBtn }
-        onClick={ () => salvaEmail(email) }
+        onClick={ () => {
+          salvaEmail(email);
+          history.push('/foods');
+        } }
       >
         Enter
       </button>
