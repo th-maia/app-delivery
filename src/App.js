@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
 import Login from './components/Login';
+import RecipeProvider from './context/RecipeProvider';
 
 function App() {
   return (
-    <Login />
+    <RecipeProvider>
+      <Login />
+    </RecipeProvider>
   );
 }
 
