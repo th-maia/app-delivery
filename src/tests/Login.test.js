@@ -7,7 +7,7 @@ import renderWithRouter from '../helper/renderWithRouter';
 
 describe('Desenvolva testes para atingir 50% de cobertura total da aplicação', () => {
   it('Verifica se existem caixas de entradas e botão na tela login', () => {
-    render(<App />);
+    renderWithRouter(<App />);
 
     const inputEmail = screen.getByTestId('email-input');
     const inputSenha = screen.getByTestId('password-input');
@@ -41,6 +41,6 @@ describe('Desenvolva testes para atingir 50% de cobertura total da aplicação',
     }); 
     const textFoods = screen.getByText('Foods');
     expect(textFoods).toBeInTheDocument();
-    // expect(history.location.pathname).toBe('/foods'); TRABALHANDO AQUI
+    expect(history.location.pathname).toBe('/foods');
   });
 }) 
