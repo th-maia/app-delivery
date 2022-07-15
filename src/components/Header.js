@@ -28,7 +28,19 @@ function Header(props) {
                 alt="Imagem pesquisa"
               />
             </button>
-            { mostraPesquisa && <input type="text" data-testid="search-input" /> }
+            { mostraPesquisa
+            && (
+              <div>
+                <input type="text" data-testid="search-input" />
+                <input type="radio" data-testid="ingredient-search-radio" />
+                ingrediente
+                <input type="radio" data-testid="name-search-radio" />
+                nome
+                <input type="radio" data-testid="first-letter-search-radio" />
+                primeira letra
+                <button type="button" data-testid="exec-search-btn">Buscar</button>
+              </div>
+            )}
           </div>
         )
       }
