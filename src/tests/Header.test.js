@@ -16,7 +16,8 @@ describe('Teste Tela do Header', () => {
     });
 
     it('Teste se aparece o campo de pesquisa', () => {
-        renderWithRouter(<Foods />)
+        const { history } = renderWithRouter(<App />)
+        history.push('/foods');
         const imgSearch = screen.getByTestId('search-top-btn');
         let pesquisaEl = screen.queryByTestId('search-input');
 

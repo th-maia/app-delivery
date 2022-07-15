@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './RecipeContext';
 import foodsApi from '../api/foodsApi';
+import drinksApi from '../api/drinksApi';
 
 function RecipeProvider({ children }) {
   function salvaEmail(emailLogin) {
@@ -11,22 +12,20 @@ function RecipeProvider({ children }) {
     localStorage.setItem('cocktailsToken', JSON.stringify(1));
   }
 
-  async function fetchFood(searchType, searchValue) {
+  async function fetchFood(searchType, searchValue, local) {
     if (searchType === 'FirstLetter' && searchValue.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     }
-    const results = await foodsApi(searchType, searchValue);
-    console.log(results);
-  }
-
-  async function fetchDrink(searchType, searchValue) {
-    await foodsApi(searchType, searchValue);
+    if (local === '/foods') {
+      await foodsApi(searchType, searchValue);
+    } else {
+      await drinksApi(searchType, searchValue);
+    }
   }
 
   const contextValue = {
     salvaEmail,
     fetchFood,
-    fetchDrink,
   };
 
   return (

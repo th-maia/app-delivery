@@ -1,14 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import RecipeContext from '../context/RecipeContext';
+import SearchBar from './SearchBar';
 
 function Header(props) {
-  const { fetchFood } = useContext(RecipeContext);
   const { title, hasSearchIcon } = props;
   const [mostraPesquisa, setMostraPesquisa] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [searchType, setSearchType] = useState('Ingredient');
   return (
     <div>
       <Link to="/profile">
@@ -32,48 +29,7 @@ function Header(props) {
                 alt="Imagem pesquisa"
               />
             </button>
-            { mostraPesquisa
-            && (
-              <div>
-                <input
-                  type="text"
-                  data-testid="search-input"
-                  value={ searchValue }
-                  onChange={ ({ target }) => setSearchValue(target.value) }
-                />
-                <input
-                  type="radio"
-                  data-testid="ingredient-search-radio"
-                  value="Ingredient"
-                  onChange={ ({ target }) => setSearchType(target.value) }
-                  name="typeSearch"
-                />
-                ingrediente
-                <input
-                  type="radio"
-                  data-testid="name-search-radio"
-                  value="Name"
-                  onChange={ ({ target }) => setSearchType(target.value) }
-                  name="typeSearch"
-                />
-                nome
-                <input
-                  type="radio"
-                  data-testid="first-letter-search-radio"
-                  value="FirstLetter"
-                  onChange={ ({ target }) => setSearchType(target.value) }
-                  name="typeSearch"
-                />
-                primeira letra
-                <button
-                  type="button"
-                  data-testid="exec-search-btn"
-                  onClick={ () => fetchFood(searchType, searchValue) }
-                >
-                  Buscar
-                </button>
-              </div>
-            )}
+            { mostraPesquisa && <SearchBar />}
           </div>
         )
       }
