@@ -24,15 +24,18 @@ function RecipeProvider({ children }) {
     if (local === '/foods') {
       const food = await foodsApi(searchType, searchValue);
       setGetFood(food);
-      if (food.meals.length === 1) {
+      if (food.meals?.length === 1) {
         history.push(`/foods/${food.meals[0].idMeal}`);
+      } else if (!food.meals) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
     } else {
-      const drink = await drinksApi(searchType, searchValue);
+      const drink = await drinksApi(searchType, searchValue) || {};
       setGetDrink(drink);
-      if (drink.drinks.length === 1) {
-        console.log('redirect');
+      if (drink?.drinks?.length === 1 && drink) {
         history.push(`/drinks/${drink.drinks[0].idDrink}`);
+      } else if (!drink.drinks) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
     }
   }

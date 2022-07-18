@@ -7,12 +7,12 @@ const MAX_RECIPE_RENDER = 12;
 
 function Foods() {
   const { getFood } = useContext(RecipeContext);
-  const max = Math.min(getFood.meals.length, MAX_RECIPE_RENDER);
+  const max = getFood.meals && Math.min(getFood.meals.length, MAX_RECIPE_RENDER);
   return (
     <div>
       <Header title="Foods" />
       <ul>
-        {getFood.meals.length > 1
+        {getFood.meals?.length > 1
           && getFood.meals.slice(0, max).map(
             (value, index) => (
               <li key={ index }>
