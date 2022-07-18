@@ -10,6 +10,9 @@ const drinksApi = async (type, value) => {
   case 'FirstLetter':
     url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${value}`;
     break;
+  case 'Category':
+    url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=${value || 'list'}`;
+    break;
   default:
     url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
   }

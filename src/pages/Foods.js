@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import Header from '../components/Header';
 import Card from '../components/Card';
 import RecipeContext from '../context/RecipeContext';
-import Footer from '../components/Footer';
 import foodsApi from '../api/foodsApi';
 
 const MAX_RECIPE_RENDER = 12;
@@ -17,7 +15,6 @@ function Foods() {
   const max = getFood.meals && Math.min(getFood.meals.length, MAX_RECIPE_RENDER);
   return (
     <div>
-      <Header title="Foods" />
       <ul>
         {getFood.meals?.length > 1
           && getFood.meals.slice(0, max).map(
@@ -32,7 +29,6 @@ function Foods() {
             ),
           )}
       </ul>
-      <Footer />
     </div>
   );
 }
