@@ -1,14 +1,14 @@
-const foodsApi = async (type, value) => {
+const drinksApi = async (type, value) => {
   let url;
   switch (type) {
   case 'Ingredient':
-    url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${value}`;
+    url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${value}`;
     break;
   case 'Name':
-    url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`;
+    url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`;
     break;
   case 'FirstLetter':
-    url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
+    url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${value}`;
     break;
   default:
     return;
@@ -23,4 +23,4 @@ const foodsApi = async (type, value) => {
   }
 };
 
-export default foodsApi;
+export default drinksApi;
