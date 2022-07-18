@@ -45,6 +45,8 @@ function RecipeProvider({ children }) {
     fetchFood,
     getDrink,
     getFood,
+    setGetFood,
+    setGetDrink,
   };
 
   return (

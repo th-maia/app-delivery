@@ -20,3 +20,13 @@ Footer {
   color: white;
   text-align: center;
 }
+
+Footer > footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2em;
+}
+
+li {
+  list-style-type: none;
+}

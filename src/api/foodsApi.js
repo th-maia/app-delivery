@@ -11,7 +11,7 @@ const foodsApi = async (type, value) => {
     url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
     break;
   default:
-    return;
+    url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
   }
   try {
     const response = await fetch(url);
