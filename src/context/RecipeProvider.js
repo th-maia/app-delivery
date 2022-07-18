@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import RecipeContext from './RecipeContext';
@@ -7,6 +7,8 @@ import drinksApi from '../api/drinksApi';
 
 function RecipeProvider({ children }) {
   const history = useHistory();
+  const [getFood, setGetFood] = useState({ meals: [] });
+  const [getDrink, setGetDrink] = useState({ drinks: [] });
 
   function salvaEmail(emailLogin) {
     const emailStorage = { email: emailLogin };
@@ -20,17 +22,17 @@ function RecipeProvider({ children }) {
       global.alert('Your search must have only 1 (one) character');
     }
     if (local === '/foods') {
-      const getFood = await foodsApi(searchType, searchValue);
-      console.log(getFood);
-      if (getFood.meals.length === 1) {
-        console.log(getFood.meals[0].idMeal);
-        history.push(`/foods/${getFood.meals[0].idMeal}`);
+      const food = await foodsApi(searchType, searchValue);
+      setGetFood(food);
+      if (food.meals.length === 1) {
+        history.push(`/foods/${food.meals[0].idMeal}`);
       }
     } else {
-      const getDrink = await drinksApi(searchType, searchValue);
-      console.log(getDrink);
-      if (getDrink.drinks.length === 1) {
-        history.push(`/drinks/${getDrink.drinks[0].idDrink}`);
+      const drink = await drinksApi(searchType, searchValue);
+      setGetDrink(drink);
+      if (drink.drinks.length === 1) {
+        console.log('redirect');
+        history.push(`/drinks/${drink.drinks[0].idDrink}`);
       }
     }
   }
@@ -38,6 +40,8 @@ function RecipeProvider({ children }) {
   const contextValue = {
     salvaEmail,
     fetchFood,
+    getDrink,
+    getFood,
   };
 
   return (
