@@ -8,7 +8,6 @@ function SearchBar() {
   const [searchType, setSearchType] = useState('Ingredient');
   const history = useHistory();
   const local = history.location.pathname;
-  // console.log(local);
   return (
     <div>
       <input

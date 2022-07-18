@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
+import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
 
 function Header(props) {
   const { title, hasSearchIcon } = props;
@@ -11,7 +13,7 @@ function Header(props) {
       <Link to="/profile">
         <img
           data-testid="profile-top-btn"
-          src="../images/profileIcon.svg"
+          src={ profileIcon }
           alt="Imagem perfil"
         />
       </Link>
@@ -25,7 +27,7 @@ function Header(props) {
             <button type="button" onClick={ () => setMostraPesquisa(!mostraPesquisa) }>
               <img
                 data-testid="search-top-btn"
-                src="../images/searchIcon.svg"
+                src={ searchIcon }
                 alt="Imagem pesquisa"
               />
             </button>

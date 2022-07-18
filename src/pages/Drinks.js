@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import RecipeContext from '../context/RecipeContext';
+import Footer from '../components/Footer';
 
 const MAX_RECIPE_RENDER = 12;
 
@@ -25,6 +26,7 @@ function Drinks() {
             ),
           )}
       </ul>
+      <Footer />
     </div>
   );
 }
