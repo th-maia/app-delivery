@@ -9,6 +9,7 @@ const MAX = 5;
 
 const CategoryFilter = ({ type }) => {
   const [categories, setCategories] = useState([]);
+  const [choosenCategory, setChoosenCategory] = useState('All');
   const { setGetFood, setGetDrink } = useContext(RecipeContext);
   const { location: pathname } = useHistory();
   const fetch = type === 'foods' ? foodsApi : drinksApi;
@@ -44,10 +45,18 @@ const CategoryFilter = ({ type }) => {
           <button
             type="button"
             data-testid={ `${strCategory}-category-filter` }
-            onClick={ () => (
+            onClick={ () => (choosenCategory === strCategory ? (
+              fetch('All')
+                .then((data) => {
+                  setRecipes(data);
+                  setChoosenCategory('All');
+                })) : (
               fetch('Category', strCategory)
-                .then((data) => (setRecipes(data)))
-            ) }
+                .then((data) => {
+                  setRecipes(data);
+                  setChoosenCategory(strCategory);
+                })
+            )) }
           >
             {strCategory}
           </button>
