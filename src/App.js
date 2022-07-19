@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoriteRecipe from './pages/FavoriteRecipe';
 import RecipeProvider from './context/RecipeProvider';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
@@ -21,10 +22,20 @@ function App() {
         <Route exact path="/drinks">
           <Recipes type="drinks" />
         </Route>
-        <Route exact path="/foods/:id-da-receita" component={ Foods } />
-        <Route exact path="/drinks/:id-da-receita" component={ Drinks } />
-        <Route exact path="/foods/:id-da-receita/in-progress" component={ Foods } />
-        <Route exact path="/drinks/:id-da-receita/in-progress" component={ Drinks } />
+        <Route
+          exact
+          path="/foods/:id"
+          render={ ({ match }) => (
+            <RecipeDetails match={ match } />) }
+        />
+        <Route
+          exact
+          path="/drinks/:id"
+          render={ ({ match }) => (
+            <RecipeDetails match={ match } />) }
+        />
+        <Route exact path="/foods/:id/in-progress" component={ Foods } />
+        <Route exact path="/drinks/:id/in-progress" component={ Drinks } />
 
         <Route exact path="/profile" component={ Profile } />
         <Route exact path="/done-recipes" component={ DoneRecipe } />

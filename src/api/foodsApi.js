@@ -13,7 +13,9 @@ const foodsApi = async (type, value) => {
     break;
   case 'Category':
     url = `https://www.themealdb.com/api/json/v1/1/${value ? 'filter' : 'list'}.php?c=${value || 'list'}`;
-    // console.log(url);
+    break;
+  case 'Lookup':
+    url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${value}`;
     break;
   default:
     url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
