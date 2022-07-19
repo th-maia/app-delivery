@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link, useHistory } from 'react-router-dom';
 
 const Card = (props) => {
-  const { index, name, imgSrc } = props;
-  //   console.log(getFood.meals[index]);
+  const { index, name, imgSrc, id } = props;
+  const { location: { pathname } } = useHistory();
   return (
-    <div data-testid={ `${index}-recipe-card` }>
+    <Link to={ `${pathname}/${id}` } data-testid={ `${index}-recipe-card` }>
       <img
         alt={ name }
         data-testid={ `${index}-card-img` }
@@ -14,7 +15,7 @@ const Card = (props) => {
         height="150"
       />
       <p data-testid={ `${index}-card-name` }>{name}</p>
-    </div>
+    </Link>
   );
 };
 
@@ -22,5 +23,6 @@ Card.propTypes = {
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 export default Card;

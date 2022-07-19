@@ -24,6 +24,7 @@ function Foods() {
                 index={ index }
                 name={ value.strMeal }
                 imgSrc={ value.strMealThumb }
+                id={ value.idMeal }
               />
             </li>
           ),
