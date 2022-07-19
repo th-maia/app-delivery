@@ -11,7 +11,7 @@ const drinksApi = async (type, value) => {
     url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${value}`;
     break;
   case 'Category':
-    url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=${value || 'list'}`;
+    url = `https://www.thecocktaildb.com/api/json/v1/1/${value ? 'filter' : 'list'}.php?c=${value || 'list'}`;
     break;
   default:
     url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';

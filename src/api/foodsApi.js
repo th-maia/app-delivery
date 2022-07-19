@@ -1,4 +1,5 @@
 const foodsApi = async (type, value) => {
+  // console.log(type, value);
   let url;
   switch (type) {
   case 'Ingredient':
@@ -11,7 +12,8 @@ const foodsApi = async (type, value) => {
     url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
     break;
   case 'Category':
-    url = `https://www.themealdb.com/api/json/v1/1/list.php?c=${value || 'list'}`;
+    url = `https://www.themealdb.com/api/json/v1/1/${value ? 'filter' : 'list'}.php?c=${value || 'list'}`;
+    // console.log(url);
     break;
   default:
     url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -19,7 +21,7 @@ const foodsApi = async (type, value) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(`Algo deu errado ao fazer o fetch da API :( \n${error}`);

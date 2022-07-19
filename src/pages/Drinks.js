@@ -19,7 +19,7 @@ function Drinks() {
   return (
     <div>
       <ul>
-        {getDrink?.drinks?.length > 1
+        {getDrink?.drinks
           && getDrink.drinks.slice(0, max).map(
             (value, index) => (
               <li key={ index }>

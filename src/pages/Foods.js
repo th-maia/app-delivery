@@ -16,18 +16,18 @@ function Foods() {
   return (
     <div>
       <ul>
-        {getFood.meals?.length > 1
-          && getFood.meals.slice(0, max).map(
-            (value, index) => (
-              <li key={ index }>
-                <Card
-                  index={ index }
-                  name={ value.strMeal }
-                  imgSrc={ value.strMealThumb }
-                />
-              </li>
-            ),
-          )}
+        { getFood.meals
+        && getFood.meals.slice(0, max).map(
+          (value, index) => (
+            <li key={ index }>
+              <Card
+                index={ index }
+                name={ value.strMeal }
+                imgSrc={ value.strMealThumb }
+              />
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );
