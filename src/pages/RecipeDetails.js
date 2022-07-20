@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import foodsApi from '../api/foodsApi';
 import drinksApi from '../api/drinksApi';
-import Card from '../components/Card';
 import normalize from '../api/normalizeData';
 import IngredientList from '../components/IngredientList';
 import StartRecipe from '../components/StartRecipe';
+import CardRecomendado from '../components/CardRecomendado';
 
 function RecipeDetails() {
   const { location: { pathname } } = useHistory();
@@ -69,19 +69,21 @@ function RecipeDetails() {
               src={ video?.replace('/watch?v=', '/embed/') }
               title={ name }
             />}
-          { recomendation.map(
-            (value, index) => (
-              <li key={ index } data-testid={ `${index}-recomendation-card` }>
-                <Card
-                  index={ index }
-                  name={ value.name }
-                  imgSrc={ value.thumb }
-                  id={ value.id }
-                  key={ index }
-                />
-              </li>
-            ),
-          )}
+          <div id="items-wrapper">
+            <div id="items">
+              { recomendation.map(
+                (value, index) => (
+                  <CardRecomendado
+                    index={ index }
+                    name={ value.name }
+                    imgSrc={ value.thumb }
+                    id={ value.id }
+                    key={ index }
+                  />
+                ),
+              )}
+            </div>
+          </div>
         </div>
       )}
       <StartRecipe text="Start Recipe" />

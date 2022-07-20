@@ -66,3 +66,18 @@
     transform: rotate(-10deg);
   }
 }
+
+#items-wrapper {
+  width: 350px;    
+}
+
+#items {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+#item-class {
+  width: 51%;
+  scroll-snap-align: start;
+}

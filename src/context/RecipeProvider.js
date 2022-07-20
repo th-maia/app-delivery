@@ -17,6 +17,18 @@ function RecipeProvider({ children }) {
     localStorage.setItem('cocktailsToken', JSON.stringify(1));
   }
 
+  function saveDoneRecipe(recipe) {
+    const {
+      id,
+      type,
+      nationality,
+      category,      
+    } = recipe;
+    //localStorage.setItem()
+    
+        
+  }
+
   async function fetchFood(searchType, searchValue, local) {
     if (searchType === 'FirstLetter' && searchValue.length > 1) {
       global.alert('Your search must have only 1 (one) character');
