@@ -18,7 +18,6 @@ const KEY_NAMES = {
     video: 'strVideo',
     instructions: 'strInstructions',
     alcoholic: 'strAlcoholic',
-    nationality: '',
   },
   category: {
     name: 'strCategory',

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import RecipeProvider from './context/RecipeProvider';
 import Login from './pages/Login';
 import Recipes from './pages/Recipes';
@@ -23,17 +23,25 @@ function App() {
         <Route
           exact
           path="/foods/:id"
-          render={ ({ match }) => (
-            <RecipeDetails match={ match } />) }
-        />
+        >
+          <RecipeDetails />
+        </Route>
         <Route
           exact
           path="/drinks/:id"
-          render={ ({ match }) => (
-            <RecipeDetails match={ match } />) }
+          component={ withRouter(RecipeDetails) }
         />
-        <Route exact path="/foods/:id/in-progress" component={ RecipeDetails } />
-        <Route exact path="/drinks/:id/in-progress" component={ RecipeDetails } />
+        <Route
+          exact
+          path="/foods/:id/in-progress"
+          component={ withRouter(RecipeDetails) }
+        />
+
+        <Route
+          exact
+          path="/drinks/:id/in-progress"
+          component={ withRouter(RecipeDetails) }
+        />
 
         <Route exact path="/profile" component={ Profile } />
         <Route exact path="/done-recipes" component={ DoneRecipe } />

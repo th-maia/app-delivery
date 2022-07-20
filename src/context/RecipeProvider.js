@@ -22,34 +22,75 @@ function RecipeProvider({ children }) {
   }
 
   function getInProgressRecipes() {
-    return JSON.parse(localStorage.getItem('doneRecipes')) || [];
+    return JSON.parse(localStorage.getItem('doneRecipes')) || {};
   }
 
-  // function addDoneRecipe(recipe) {
-  //   const doneData = new Date();
-  //   const {
-  //     id,
-  //     type,
-  //     nationality,
-  //     category,
-  //     alcoholic,
-  //     thumb: image,
-  //     tags,
-  //   } = recipe;
+  function getFavoriteRecipes() {
+    return JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+  }
 
-  //   const doneRecipe = {
-  //     id,
-  //     type,
-  //     nationality,
-  //     category: category || '',
-  //     alcoholicOrNot: alcoholic || '',
-  //     image,
-  //     tags,
-  //     doneData,
-  //   };
-  //   console.log(doneRecipe);
-  //   localStorage.setItem('doneRecipes', [...getDoneRecipes(), doneRecipe]);
+  function addDoneRecipe(recipe) {
+    const doneData = new Date();
+    const {
+      id,
+      typeBR: type,
+      nationality,
+      category,
+      alcoholic,
+      thumb: image,
+      tags,
+    } = recipe;
+
+    const doneRecipe = {
+      id,
+      type,
+      nationality: nationality || '',
+      category: category || '',
+      alcoholicOrNot: alcoholic || '',
+      image,
+      tags,
+      doneData,
+    };
+    console.log(doneRecipe);
+    localStorage.setItem(
+      'doneRecipes', JSON.stringify([...getDoneRecipes(), doneRecipe]),
+    );
+  }
+
+  function addFavoriteRecipe(recipe) {
+    const {
+      id,
+      type,
+      nationality,
+      category,
+      alcoholic,
+      name,
+      thumb: image,
+    } = recipe;
+    const favoriteRecipe = {
+      id,
+      type,
+      nationality: nationality || '',
+      category,
+      alcoholicOrNot: alcoholic || '',
+      name,
+      image,
+    };
+    localStorage.setItem(
+      'favoriteRecipes', JSON.stringify([...getFavoriteRecipes(), favoriteRecipe]),
+    );
+  }
+
+  // function addInProgressRecipes(recipe) {
   // }
+
+  function removeFavoriteRecipe(id) {
+    const favoriteRecipes = getFavoriteRecipes();
+    const newFavoriteRecipes = favoriteRecipes.filter(
+      (recipe) => recipe.id !== id,
+    );
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+  }
 
   async function fetchFood(searchType, searchValue, local) {
     if (searchType === 'FirstLetter' && searchValue.length > 1) {
@@ -83,6 +124,10 @@ function RecipeProvider({ children }) {
     setGetDrink,
     getDoneRecipes,
     getInProgressRecipes,
+    getFavoriteRecipes,
+    addDoneRecipe,
+    addFavoriteRecipe,
+    removeFavoriteRecipe,
   };
 
   return (

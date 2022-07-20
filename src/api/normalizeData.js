@@ -31,6 +31,8 @@ function normalizeSingleRecipe(recipe, isFood) {
   });
   output.ingredients = normalizeIngredients(output);
   output.tags = normalizeTags(output);
+  output.type = isFood ? 'food' : 'drink';
+  output.typeBR = isFood ? 'comida' : 'bebida';
   return output;
 }
 
