@@ -1,11 +1,9 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import useEvent from '@testing-library/user-event';
-import Foods from '../pages/Foods';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import ginDrinks from '../../cypress/mocks/ginDrinks';
-import userEvent from '@testing-library/user-event';
 
 describe('Teste Tela do SearchBar', () => {
     beforeEach(() => {

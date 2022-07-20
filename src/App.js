@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import RecipeProvider from './context/RecipeProvider';
 import Login from './pages/Login';
-import Foods from './pages/Foods';
-import Drinks from './pages/Drinks';
 import Recipes from './pages/Recipes';
 import Profile from './pages/Profile';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoriteRecipe from './pages/FavoriteRecipe';
-import RecipeProvider from './context/RecipeProvider';
-import RecipeDetails from './components/RecipeDetails';
+import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
@@ -34,8 +32,8 @@ function App() {
           render={ ({ match }) => (
             <RecipeDetails match={ match } />) }
         />
-        <Route exact path="/foods/:id/in-progress" component={ Foods } />
-        <Route exact path="/drinks/:id/in-progress" component={ Drinks } />
+        <Route exact path="/foods/:id/in-progress" component={ RecipeDetails } />
+        <Route exact path="/drinks/:id/in-progress" component={ RecipeDetails } />
 
         <Route exact path="/profile" component={ Profile } />
         <Route exact path="/done-recipes" component={ DoneRecipe } />
