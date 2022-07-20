@@ -7,6 +7,7 @@ const KEY_NAMES = {
     category: 'strCategory',
     video: 'strYoutube',
     instructions: 'strInstructions',
+    nationality: 'strArea',
   },
   drink: {
     list: 'drinks',
@@ -17,10 +18,12 @@ const KEY_NAMES = {
     video: 'strVideo',
     instructions: 'strInstructions',
     alcoholic: 'strAlcoholic',
+    nationality: '',
   },
   category: {
     name: 'strCategory',
   },
+  tags: 'strTags',
   ingredient: 'strIngredient',
   measure: 'strMeasure',
 };

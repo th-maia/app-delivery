@@ -5,6 +5,13 @@ function normalizeCategories(data) {
   return data.map(({ [name]: category }) => (category));
 }
 
+function normalizeTags(data) {
+  const name = KEY_NAMES.tags;
+  if (!data[name]) return [];
+  const tags = data[name].split(',');
+  return tags.filter((tag) => tag !== '');
+}
+
 function normalizeIngredients(data) {
   const { ingredient, measure } = KEY_NAMES;
   const getMeasureKey = (ingredientKey) => (
@@ -23,6 +30,7 @@ function normalizeSingleRecipe(recipe, isFood) {
     if (key !== 'list') output[key] = recipe[value];
   });
   output.ingredients = normalizeIngredients(output);
+  output.tags = normalizeTags(output);
   return output;
 }
 

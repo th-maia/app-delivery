@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import foodsApi from '../api/foodsApi';
 import drinksApi from '../api/drinksApi';
@@ -6,8 +6,19 @@ import normalize from '../api/normalizeData';
 import IngredientList from '../components/IngredientList';
 import StartRecipe from '../components/StartRecipe';
 import CardRecomendado from '../components/CardRecomendado';
+import RecipeContext from '../context/RecipeContext';
+
+function getRecipeStatus(doneRecipes, id) {
+  if (doneRecipes.find((recipe) => recipe.id === id)) {
+    return 'done';
+  }
+  // verificar in progress
+
+  return 'undone';
+}
 
 function RecipeDetails() {
+  const { getDoneRecipes } = useContext(RecipeContext);
   const { location: { pathname } } = useHistory();
   const { id } = useParams();
   const type = pathname.includes('foods') ? 'foods' : 'drinks';
@@ -15,6 +26,7 @@ function RecipeDetails() {
   const fetchRecomedation = type === 'foods' ? drinksApi : foodsApi;
   const [recipeState, setRecipeState] = useState({ recipe: {}, isLoad: false });
   const [recomendation, setRecomendation] = useState([]);
+  const [status, setStatus] = useState('done');// done , in progress, undone
 
   useEffect(() => {
     fetch('Lookup', id).then((response) => {
@@ -26,7 +38,8 @@ function RecipeDetails() {
     fetchRecomedation().then((response) => {
       setRecomendation(normalize(response, { max: 6 }));
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    setStatus(getRecipeStatus(getDoneRecipes(), id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { recipe, isLoad } = recipeState;
@@ -71,7 +84,7 @@ function RecipeDetails() {
             />}
           <div id="items-wrapper">
             <div id="items">
-              { recomendation.map(
+              {recomendation.map(
                 (value, index) => (
                   <CardRecomendado
                     index={ index }
@@ -86,7 +99,12 @@ function RecipeDetails() {
           </div>
         </div>
       )}
-      <StartRecipe text="Start Recipe" />
+      {status !== 'done'
+      && (
+        <StartRecipe
+          text={ status === 'undone' ? 'Start Recipe' : 'Continue Recipe' }
+        />
+      )}
     </div>
   );
 }

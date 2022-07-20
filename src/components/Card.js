@@ -5,8 +5,9 @@ import { Link, useHistory } from 'react-router-dom';
 const Card = (props) => {
   const { index, name, imgSrc, id } = props;
   const { location: { pathname } } = useHistory();
+  const path = pathname.includes('foods') ? 'foods' : 'drinks';
   return (
-    <Link to={ `${pathname}/${id}` } data-testid={ `${index}-recipe-card` }>
+    <Link to={ `/${path}/${id}` } data-testid={ `${index}-recipe-card` }>
       <img
         alt={ name }
         data-testid={ `${index}-card-img` }

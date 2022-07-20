@@ -5,10 +5,11 @@ import { Link, useHistory } from 'react-router-dom';
 const Card = (props) => {
   const { index, name, imgSrc, id } = props;
   const { location: { pathname } } = useHistory();
+  const path = pathname.includes('drinks') ? 'foods' : 'drinks';
   return (
     <Link
       id="item-class"
-      to={ `${pathname}/${id}` }
+      to={ `/${path}/${id}` }
       data-testid={ `${index}-recomendation-card` }
     >
       <img
