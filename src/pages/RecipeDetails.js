@@ -82,8 +82,8 @@ function RecipeDetails() {
               src={ video?.replace('/watch?v=', '/embed/') }
               title={ name }
             />}
-          <div id="items-wrapper">
-            <div id="items">
+          <div className="items-wrapper">
+            <div className="items">
               {recomendation.map(
                 (value, index) => (
                   <CardRecomendado

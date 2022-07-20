@@ -8,7 +8,7 @@ const Card = (props) => {
   const path = pathname.includes('drinks') ? 'foods' : 'drinks';
   return (
     <Link
-      id="item-class"
+      className="item-class"
       to={ `/${path}/${id}` }
       data-testid={ `${index}-recomendation-card` }
     >
