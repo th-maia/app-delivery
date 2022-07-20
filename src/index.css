@@ -1,24 +1,30 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system , BlinkMacSystemFont , Segoe UI , Roboto , Oxygen , Ubuntu , Cantarell , Fira Sans , Droid Sans , Helvetica Neue , sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro , Menlo , Monaco , Consolas , Courier New , monospace;
 }
 
 Footer {
-  position: fixed;
-  left: 0;
   bottom: 0;
-  width: 100%;
   color: white;
+  left: 0;
+  position: fixed;
   text-align: center;
+  width: 100%;
+}
+
+.start-recipe {
+  bottom: 0;
+  color: white;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
 }
 
 Footer > footer {

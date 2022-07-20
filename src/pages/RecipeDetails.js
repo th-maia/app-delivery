@@ -5,6 +5,7 @@ import drinksApi from '../api/drinksApi';
 import Card from '../components/Card';
 import normalize from '../api/normalizeData';
 import IngredientList from '../components/IngredientList';
+import StartRecipe from '../components/StartRecipe';
 
 function RecipeDetails() {
   const { location: { pathname } } = useHistory();
@@ -83,6 +84,7 @@ function RecipeDetails() {
           )}
         </div>
       )}
+      <StartRecipe text="Start Recipe" />
     </div>
   );
 }
