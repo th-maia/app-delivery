@@ -4,9 +4,8 @@ import copy from 'clipboard-copy';
 import foodsApi from '../api/foodsApi';
 import drinksApi from '../api/drinksApi';
 import normalize from '../api/normalizeData';
-import IngredientList from '../components/IngredientList';
+import IngredientInProgress from '../components/IngredientInProgress';
 import StartRecipe from '../components/StartRecipe';
-import CardRecomendado from '../components/CardRecomendado';
 import RecipeContext from '../context/RecipeContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -18,7 +17,7 @@ function getRecipeStatus(doneRecipes, inProgress, id) {
   if (doneRecipes.find((recipe) => recipe.id === id)) {
     return 'done';
   }
-  if (Object.keys(inProgress).find((recipe) => recipe === id)) {
+  if (Object.keys(inProgress).filter((recipe) => recipe.id === id)) {
     return 'in progress';
   }
   // verificar in progress
@@ -43,7 +42,6 @@ function RecipeDetails() {
   const fetch = type === 'foods' ? foodsApi : drinksApi;
   const fetchRecomedation = type === 'foods' ? drinksApi : foodsApi;
   const [recipeState, setRecipeState] = useState({ recipe: {}, isLoad: false });
-  const [recomendation, setRecomendation] = useState([]);
   const [status, setStatus] = useState('done');// done , in progress, undone
   const [copiedMensage, setCopiedMensage] = useState(false);
   const [favorite, setFavorite] = useState(false);
@@ -72,13 +70,11 @@ function RecipeDetails() {
   }
 
   const { recipe, isLoad } = recipeState;
-  console.log(status);
   // console.log(recipe?.strMealThumb);
   // console.log(type, isLoad);
 
   const { name,
     thumb,
-    video,
     instructions,
     category,
     alcoholic,
@@ -86,7 +82,7 @@ function RecipeDetails() {
   } = recipe;
   return (
     <div>
-      Recipes Details
+      Recipe in Progress
       {isLoad && (
         <div>
           <img
@@ -124,31 +120,8 @@ function RecipeDetails() {
           <h4 data-testid="recipe-category">
             {alcoholic || category}
           </h4>
-          <IngredientList ingredients={ ingredients } />
+          <IngredientInProgress ingredients={ ingredients } inProgress />
           <h4 data-testid="instructions">{instructions}</h4>
-          {video
-            && <iframe
-              width="350"
-              height="315"
-              data-testid="video"
-              src={ video?.replace('/watch?v=', '/embed/') }
-              title={ name }
-            />}
-          <div className="items-wrapper">
-            <div className="items">
-              {recomendation.map(
-                (value, index) => (
-                  <CardRecomendado
-                    index={ index }
-                    name={ value.name }
-                    imgSrc={ value.thumb }
-                    id={ value.id }
-                    key={ index }
-                  />
-                ),
-              )}
-            </div>
-          </div>
         </div>
       )}
       {status !== 'done'

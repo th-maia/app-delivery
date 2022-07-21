@@ -56,9 +56,9 @@ describe('Teste da Tela de Recibe Details', () => {
 
         const pegaCompartilhar = await screen.findByTestId('share-btn');
         expect(pegaCompartilhar).toBeInTheDocument();
-        // userEvent.click(pegaCompartilhar);
-        // const spy = jest.spyOn(global, 'addFavoriteRecipe');
-        // expect(spy).toHaveBeenCalled();
+        
+        const spy = jest.spyOn(global, 'onClick');
+        expect(spy).toHaveBeenCalled();
         
         expect(copy).toBeInstanceOf(Function);
 

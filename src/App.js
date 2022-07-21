@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import DoneRecipe from './pages/DoneRecipe';
 import FavoriteRecipe from './pages/FavoriteRecipe';
 import RecipeDetails from './pages/RecipeDetails';
+import RecipeInProgress from './pages/RecipeInProgress';
 
 function App() {
   return (
@@ -34,13 +35,13 @@ function App() {
         <Route
           exact
           path="/foods/:id/in-progress"
-          component={ withRouter(RecipeDetails) }
+          component={ withRouter(RecipeInProgress) }
         />
 
         <Route
           exact
           path="/drinks/:id/in-progress"
-          component={ withRouter(RecipeDetails) }
+          component={ withRouter(RecipeInProgress) }
         />
 
         <Route exact path="/profile" component={ Profile } />
