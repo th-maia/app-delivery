@@ -5,7 +5,7 @@ import foodsApi from '../api/foodsApi';
 import drinksApi from '../api/drinksApi';
 import normalize from '../api/normalizeData';
 import IngredientInProgress from '../components/IngredientInProgress';
-import StartRecipe from '../components/StartRecipe';
+// import StartRecipe from '../components/StartRecipe';
 import RecipeContext from '../context/RecipeContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -17,10 +17,9 @@ function getRecipeStatus(doneRecipes, inProgress, id) {
   if (doneRecipes.find((recipe) => recipe.id === id)) {
     return 'done';
   }
-  if (Object.keys(inProgress).filter((recipe) => recipe.id === id)) {
+  if (Object.keys(inProgress).find((recipe) => recipe.id === id)) {
     return 'in progress';
   }
-  // verificar in progress
   return 'undone';
 }
 
@@ -40,9 +39,8 @@ function RecipeDetails() {
   const { id } = useParams();
   const type = pathname.includes('foods') ? 'foods' : 'drinks';
   const fetch = type === 'foods' ? foodsApi : drinksApi;
-  const fetchRecomedation = type === 'foods' ? drinksApi : foodsApi;
   const [recipeState, setRecipeState] = useState({ recipe: {}, isLoad: false });
-  const [status, setStatus] = useState('done');// done , in progress, undone
+  // const [status, setStatus] = useState('done');// done , in progress, undone
   const [copiedMensage, setCopiedMensage] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
@@ -52,9 +50,6 @@ function RecipeDetails() {
         recipe: normalize(response)[0],
         isLoad: true,
       });
-    });
-    fetchRecomedation().then((response) => {
-      setRecomendation(normalize(response, { max: 6 }));
     });
     setStatus(getRecipeStatus(
       getDoneRecipes(),
@@ -124,12 +119,18 @@ function RecipeDetails() {
           <h4 data-testid="instructions">{instructions}</h4>
         </div>
       )}
-      {status !== 'done'
+      <button
+        type="button"
+        data-testid="finish-recipe-btn"
+      >
+        Finalize Recipe
+      </button>
+      {/* {status !== 'done'
       && (
         <StartRecipe
           text={ status === 'undone' ? 'Start Recipe' : 'Continue Recipe' }
         />
-      )}
+      )} */}
     </div>
   );
 }

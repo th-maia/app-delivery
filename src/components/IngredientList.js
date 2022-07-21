@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function checkbox(index, content) {
+function checkbox(index, { measure, ingredient }) {
   return (
     <label
       htmlFor={ ingredient }
       data-testid={ `${index}-ingredient-step` }
     >
       <input id={ ingredient } key={ index } type="checkbox" />
-      {content}
+      {`${measure} - ${ingredient}`}
     </label>
   );
 }
