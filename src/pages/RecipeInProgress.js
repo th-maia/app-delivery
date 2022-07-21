@@ -5,7 +5,7 @@ import foodsApi from '../api/foodsApi';
 import drinksApi from '../api/drinksApi';
 import normalize from '../api/normalizeData';
 import IngredientInProgress from '../components/IngredientInProgress';
-// import StartRecipe from '../components/StartRecipe';
+import StartRecipe from '../components/StartRecipe';
 import RecipeContext from '../context/RecipeContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -40,7 +40,7 @@ function RecipeDetails() {
   const type = pathname.includes('foods') ? 'foods' : 'drinks';
   const fetch = type === 'foods' ? foodsApi : drinksApi;
   const [recipeState, setRecipeState] = useState({ recipe: {}, isLoad: false });
-  // const [status, setStatus] = useState('done');// done , in progress, undone
+  const [status, setStatus] = useState('done');// done , in progress, undone
   const [copiedMensage, setCopiedMensage] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
@@ -96,7 +96,8 @@ function RecipeDetails() {
             data-testid="share-btn"
             src={ shareIcon }
             onClick={ () => {
-              copy(`http://localhost:3000${pathname}`);
+              const copiaLink = `http://localhost:3000${pathname}`
+              copy(copiaLink.replace('/in-progress', ''));
               setCopiedMensage(true);
             } }
           />
