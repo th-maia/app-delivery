@@ -9,20 +9,31 @@ function RecipeProvider({ children }) {
   const history = useHistory();
   const [getFood, setGetFood] = useState({ meals: [] });
   const [getDrink, setGetDrink] = useState({ drinks: [] });
+  const [arrayIngredients, setArrayIngredients] = useState([]);
 
   function salvaEmail(emailLogin) {
     const emailStorage = { email: emailLogin };
     localStorage.setItem('user', JSON.stringify(emailStorage));
     localStorage.setItem('mealsToken', JSON.stringify(1));
     localStorage.setItem('cocktailsToken', JSON.stringify(1));
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      cocktails: {}, meals: {} }));
   }
 
   function getDoneRecipes() {
     return JSON.parse(localStorage.getItem('doneRecipes')) || [];
   }
 
-  function getInProgressRecipes() {
-    return JSON.parse(localStorage.getItem('doneRecipes')) || {};
+  function getInProgressRecipes(id, type) {
+    const getInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (type === 'foods') {
+      setArrayIngredients(getInProgress?.meals[id] ? getInProgress.meals[id] : []);
+    } else {
+      setArrayIngredients(getInProgress?.cocktails[id]
+        ? getInProgress.cocktails[id]
+        : []);
+    }
+    return getInProgress;
   }
 
   function getFavoriteRecipes() {
@@ -30,10 +41,11 @@ function RecipeProvider({ children }) {
   }
 
   function addDoneRecipe(recipe) {
-    const doneData = new Date();
+    const date = new Date();
+    const doneDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     const {
       id,
-      typeBR: type,
+      type,
       nationality,
       category,
       alcoholic,
@@ -49,7 +61,7 @@ function RecipeProvider({ children }) {
       alcoholicOrNot: alcoholic || '',
       image,
       tags,
-      doneData,
+      doneDate,
     };
     console.log(doneRecipe);
     localStorage.setItem(
@@ -81,8 +93,45 @@ function RecipeProvider({ children }) {
     );
   }
 
-  // function addInProgressRecipes(recipe) {
-  // }
+  function addInProgressRecipes(id, index, type) { // TRABALHANDO AQUI
+    let inProgressRecipesStorage = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    || { meals: {}, cocktails: {} };
+    console.log(inProgressRecipesStorage);
+    const { meals } = inProgressRecipesStorage;
+    const indexes = meals[id] || [];
+    console.log(id, type, index);
+
+    let typeOnStorage = '';
+    typeOnStorage = type === 'foods' ? 'meals' : 'cocktails';
+
+    console.log(inProgressRecipesStorage[typeOnStorage][id]);
+    if (inProgressRecipesStorage[typeOnStorage][id]
+      && inProgressRecipesStorage[typeOnStorage][id]
+        .some((element) => (element === index))) {
+      const possitionIndex = inProgressRecipesStorage[typeOnStorage][id].indexOf(index);
+      inProgressRecipesStorage[typeOnStorage][id].splice(possitionIndex, 1);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
+    } else {
+      inProgressRecipesStorage = {
+        ...inProgressRecipesStorage,
+        typeOnStorage: { [id]: [...indexes, index] } };
+      console.log(inProgressRecipesStorage);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
+    }
+
+    //   let recipeInProgress
+    // const recipeInProgress = {
+    //  cocktails: {
+    //  id-da-bebida: [lista-de-ingredientes-utilizados],
+    //  },
+    //  meals: {
+    //  id-da-comida: [lista-de-ingredientes-utilizados],
+    //  }
+    //  }
+    // localStorage.setItem(
+    //  'favoriteRecipes', JSON.stringify([...getFavoriteRecipes(), favoriteRecipe]),
+    // );
+  }
 
   function removeFavoriteRecipe(id) {
     const favoriteRecipes = getFavoriteRecipes();
@@ -127,7 +176,9 @@ function RecipeProvider({ children }) {
     getFavoriteRecipes,
     addDoneRecipe,
     addFavoriteRecipe,
+    addInProgressRecipes,
     removeFavoriteRecipe,
+    arrayIngredients,
   };
 
   return (

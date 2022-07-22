@@ -18,7 +18,7 @@ function getRecipeStatus(doneRecipes, inProgress, id) {
   if (doneRecipes.find((recipe) => recipe.id === id)) {
     return 'done';
   }
-  if (Object.keys(inProgress).find((recipe) => recipe === id)) {
+  if (inProgress && Object.keys(inProgress).find((recipe) => recipe === id)) {
     return 'in progress';
   }
   // verificar in progress
@@ -72,7 +72,7 @@ function RecipeDetails() {
   }
 
   const { recipe, isLoad } = recipeState;
-  console.log(status);
+  // console.log(status);
   // console.log(recipe?.strMealThumb);
   // console.log(type, isLoad);
 

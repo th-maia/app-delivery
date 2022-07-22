@@ -1,12 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function RecipeFilter() {
+const FILTER_TYPES = ['all', 'food', 'drink'];
+function RecipeFilter({ setFilter }) {
   return (
     <div id="filters">
-      <button type="button" data-testid="filter-by-all-btn">All</button>
-      <button type="button" data-testid="filter-by-food-btn">Food</button>
-      <button type="button" data-testid="filter-by-drink-btn">Drink</button>
+      { FILTER_TYPES.map((filter) => (
+        <button
+          key={ filter }
+          type="button"
+          data-testid={ `filter-by-${filter}-btn` }
+          onClick={ () => setFilter(filter) }
+        >
+          { filter }
+        </button>
+      ))}
     </div>);
 }
+
+RecipeFilter.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+};
 
 export default RecipeFilter;

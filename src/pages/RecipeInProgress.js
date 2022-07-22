@@ -5,7 +5,7 @@ import foodsApi from '../api/foodsApi';
 import drinksApi from '../api/drinksApi';
 import normalize from '../api/normalizeData';
 import IngredientInProgress from '../components/IngredientInProgress';
-import StartRecipe from '../components/StartRecipe';
+// import StartRecipe from '../components/StartRecipe';
 import RecipeContext from '../context/RecipeContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -13,15 +13,15 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 const aSecond = 1000;
 
-function getRecipeStatus(doneRecipes, inProgress, id) {
-  if (doneRecipes.find((recipe) => recipe.id === id)) {
-    return 'done';
-  }
-  if (Object.keys(inProgress).find((recipe) => recipe.id === id)) {
-    return 'in progress';
-  }
-  return 'undone';
-}
+// function getRecipeStatus(doneRecipes, inProgress, id) {
+//   if (doneRecipes.find((recipe) => recipe.id === id)) {
+//     return 'done';
+//   }
+//   if (Object.keys(inProgress).find((recipe) => recipe.id === id)) {
+//     return 'in progress';
+//   }
+//   return 'undone';
+// }
 
 function isFavorite(favorites, id) {
   return favorites.find((recipe) => recipe.id === id);
@@ -29,8 +29,8 @@ function isFavorite(favorites, id) {
 
 function RecipeDetails() {
   const {
-    getDoneRecipes,
-    getInProgressRecipes,
+    // getDoneRecipes,
+    // getInProgressRecipes,
     getFavoriteRecipes,
     addFavoriteRecipe,
     removeFavoriteRecipe,
@@ -40,7 +40,7 @@ function RecipeDetails() {
   const type = pathname.includes('foods') ? 'foods' : 'drinks';
   const fetch = type === 'foods' ? foodsApi : drinksApi;
   const [recipeState, setRecipeState] = useState({ recipe: {}, isLoad: false });
-  const [status, setStatus] = useState('done');// done , in progress, undone
+  // const [status, setStatus] = useState('done');// done , in progress, undone
   const [copiedMensage, setCopiedMensage] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
@@ -51,11 +51,11 @@ function RecipeDetails() {
         isLoad: true,
       });
     });
-    setStatus(getRecipeStatus(
-      getDoneRecipes(),
-      getInProgressRecipes(),
-      id,
-    ));
+    // setStatus(getRecipeStatus(
+    //   getDoneRecipes(),
+    //   getInProgressRecipes(),
+    //   id,
+    // ));
     setFavorite(isFavorite(getFavoriteRecipes(), id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -96,7 +96,7 @@ function RecipeDetails() {
             data-testid="share-btn"
             src={ shareIcon }
             onClick={ () => {
-              const copiaLink = `http://localhost:3000${pathname}`
+              const copiaLink = `http://localhost:3000${pathname}`;
               copy(copiaLink.replace('/in-progress', ''));
               setCopiedMensage(true);
             } }
@@ -116,7 +116,12 @@ function RecipeDetails() {
           <h4 data-testid="recipe-category">
             {alcoholic || category}
           </h4>
-          <IngredientInProgress ingredients={ ingredients } inProgress />
+          <IngredientInProgress
+            ingredients={ ingredients }
+            id={ id }
+            type={ type }
+            inProgress
+          />
           <h4 data-testid="instructions">{instructions}</h4>
         </div>
       )}

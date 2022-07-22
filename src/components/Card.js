@@ -26,4 +26,5 @@ Card.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
+
 export default Card;

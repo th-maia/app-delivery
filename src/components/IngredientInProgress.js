@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import RecipeContext from '../context/RecipeContext';
 
-function ingredientInProgress({ ingredients }) {
+function IngredientInProgress({ ingredients, id, type }) {
+  const { addInProgressRecipes, arrayIngredients } = useContext(RecipeContext);
+
   return (
     <div>
       <ul>
@@ -11,7 +14,17 @@ function ingredientInProgress({ ingredients }) {
               htmlFor={ ingredient }
               data-testid={ `${index}-ingredient-step` }
             >
-              <input id={ ingredient } key={ index } type="checkbox" />
+              <input
+                id={ ingredient }
+                key={ index }
+                type="checkbox"
+                checked={ () => (
+                  arrayIngredients && arrayIngredients.some((ingr) => ingr === index)
+                ) }
+                onChange={ () => {
+                  addInProgressRecipes(id, index, type);
+                } }
+              />
               {`${measure} - ${ingredient}`}
             </label>
           </li>
@@ -21,11 +34,13 @@ function ingredientInProgress({ ingredients }) {
   );
 }
 
-ingredientInProgress.propTypes = {
+IngredientInProgress.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.shape({
     ingredient: PropTypes.string,
     measure: PropTypes.string,
-  })),
+  })).isRequired,
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
-export default ingredientInProgress;
+export default IngredientInProgress;
