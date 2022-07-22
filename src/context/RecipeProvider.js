@@ -25,8 +25,13 @@ function RecipeProvider({ children }) {
   }
 
   function getInProgressRecipes(id, type) {
+    console.log(id, type);
     const getInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (type === 'foods') {
+    if (!getInProgress) {
+      localStorage.setItem('inProgressRecipes',
+        JSON.stringify({ meals: {}, cocktails: {} }));
+    } else if (type && type.includes('foods')) {
+      console.log('entrar aqui', getInProgress.meals[id]);
       setArrayIngredients(getInProgress?.meals[id] ? getInProgress.meals[id] : []);
     } else {
       setArrayIngredients(getInProgress?.cocktails[id]
@@ -94,43 +99,29 @@ function RecipeProvider({ children }) {
   }
 
   function addInProgressRecipes(id, index, type) { // TRABALHANDO AQUI
-    let inProgressRecipesStorage = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    let recipesInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'))
     || { meals: {}, cocktails: {} };
-    console.log(inProgressRecipesStorage);
-    const { meals } = inProgressRecipesStorage;
-    const indexes = meals[id] || [];
-    console.log(id, type, index);
 
     let typeOnStorage = '';
     typeOnStorage = type === 'foods' ? 'meals' : 'cocktails';
 
-    console.log(inProgressRecipesStorage[typeOnStorage][id]);
-    if (inProgressRecipesStorage[typeOnStorage][id]
-      && inProgressRecipesStorage[typeOnStorage][id]
-        .some((element) => (element === index))) {
-      const possitionIndex = inProgressRecipesStorage[typeOnStorage][id].indexOf(index);
-      inProgressRecipesStorage[typeOnStorage][id].splice(possitionIndex, 1);
-      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
-    } else {
-      inProgressRecipesStorage = {
-        ...inProgressRecipesStorage,
-        typeOnStorage: { [id]: [...indexes, index] } };
-      console.log(inProgressRecipesStorage);
-      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
-    }
+    const mealsOrCocktails = recipesInStorage[typeOnStorage];
+    const indexes = mealsOrCocktails[id] || [];
 
-    //   let recipeInProgress
-    // const recipeInProgress = {
-    //  cocktails: {
-    //  id-da-bebida: [lista-de-ingredientes-utilizados],
-    //  },
-    //  meals: {
-    //  id-da-comida: [lista-de-ingredientes-utilizados],
-    //  }
-    //  }
-    // localStorage.setItem(
-    //  'favoriteRecipes', JSON.stringify([...getFavoriteRecipes(), favoriteRecipe]),
-    // );
+    if (recipesInStorage[typeOnStorage][id]
+      && recipesInStorage[typeOnStorage][id]
+        .some((element) => (element === index))) {
+      const possitionIndex = recipesInStorage[typeOnStorage][id].indexOf(index);
+      recipesInStorage[typeOnStorage][id].splice(possitionIndex, 1);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(recipesInStorage));
+    } else {
+      recipesInStorage = {
+        ...recipesInStorage,
+        [typeOnStorage]: {
+          ...recipesInStorage[typeOnStorage],
+          [id]: [...indexes, index] } };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(recipesInStorage));
+    }
   }
 
   function removeFavoriteRecipe(id) {
@@ -179,6 +170,7 @@ function RecipeProvider({ children }) {
     addInProgressRecipes,
     removeFavoriteRecipe,
     arrayIngredients,
+    setArrayIngredients,
   };
 
   return (

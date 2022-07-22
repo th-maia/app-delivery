@@ -33,8 +33,17 @@ function CardHorizontal({ index, recipe, cardType }) {
           height="150"
         />
       </Link>
-      <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot || category}</p>
-      { cardType !== 'doneCard' && recipe.nationality }
+      { cardType !== 'doneCard'
+        ? (
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            {alcoholicOrNot || `${recipe.nationality} - ${category}`}
+          </p>
+        )
+        : (
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            {alcoholicOrNot || category}
+          </p>
+        )}
       <Link to={ `/${pathtype}/${id}` }>
         <p data-testid={ `${index}-horizontal-name` }>
           { name }

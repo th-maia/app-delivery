@@ -36,7 +36,12 @@ function FavoriteRecipe() {
       { favorites.map((favorite, index) => (
         <div key={ index }>
           <CardHorizontal index={ index } recipe={ favorite } />
-          <FavoriteButton isFavorite handlerClick={ removeFavorite } id={ favorite.id } />
+          <FavoriteButton
+            isFavorite
+            handlerClick={ removeFavorite }
+            id={ favorite.id }
+            testId={ `${index}-horizontal-favorite-btn` }
+          />
         </div>
       ))}
     </>

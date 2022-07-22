@@ -79,4 +79,26 @@ describe('Teste da Tela de Recibe in Progress', () => {
         //     expect(msgCopia).not.toBeInTheDocument();
         // }, { timeout: 3000 })
     });
+
+    it('Teste se é possivel clicar no checkbox', async () => {
+        const { history } = renderWithRouter(<App />);
+
+        history.push('/foods');
+
+        const pega = await screen.findByTestId('1-recipe-card');
+
+        userEvent.click(pega)
+
+        const startBtn = await screen.findByTestId('start-recipe-btn');
+        expect(startBtn).toBeInTheDocument();
+
+        userEvent.click(startBtn);
+
+
+        const pegaCheckBox = await screen.findByTestId('0-ingredient-step');
+        expect(pegaCheckBox).toBeInTheDocument();
+
+        userEvent.click(pegaCheckBox);
+
+    });
 })
