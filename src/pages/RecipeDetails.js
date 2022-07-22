@@ -18,7 +18,7 @@ function getRecipeStatus(doneRecipes, inProgress, id) {
   if (doneRecipes.find((recipe) => recipe.id === id)) {
     return 'done';
   }
-  if (inProgress && Object.keys(inProgress).find((recipe) => recipe === id)) {
+  if (inProgress) {
     return 'in progress';
   }
   // verificar in progress
@@ -32,10 +32,10 @@ function isFavorite(favorites, id) {
 function RecipeDetails() {
   const {
     getDoneRecipes,
-    getInProgressRecipes,
     getFavoriteRecipes,
     addFavoriteRecipe,
     removeFavoriteRecipe,
+    isInProgress,
   } = useContext(RecipeContext);
   const { location: { pathname } } = useHistory();
   const { id } = useParams();
@@ -60,7 +60,7 @@ function RecipeDetails() {
     });
     setStatus(getRecipeStatus(
       getDoneRecipes(),
-      getInProgressRecipes(),
+      isInProgress(id, type),
       id,
     ));
     setFavorite(isFavorite(getFavoriteRecipes(), id));

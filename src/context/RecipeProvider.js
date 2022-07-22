@@ -24,6 +24,15 @@ function RecipeProvider({ children }) {
     return JSON.parse(localStorage.getItem('doneRecipes')) || [];
   }
 
+  function isInProgress(id, type) {
+    const getInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    || { meals: {}, cocktails: {} };
+
+    return type.includes('food')
+      ? !!getInProgress.meals[id]
+      : !!getInProgress.cocktails[id];
+  }
+
   function getInProgressRecipes(id, type) {
     console.log(id, type);
     const getInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -171,6 +180,7 @@ function RecipeProvider({ children }) {
     removeFavoriteRecipe,
     arrayIngredients,
     setArrayIngredients,
+    isInProgress,
   };
 
   return (
