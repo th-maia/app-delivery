@@ -8,7 +8,7 @@ const maxTags = 2;
 function doneCardBody({ index, doneDate, tags }) {
   return (
     <div>
-      <p data-testid={ `${index}-horizontal-date` }>{ doneDate }</p>
+      <p data-testid={ `${index}-horizontal-done-date` }>{ doneDate }</p>
       { tags.slice(0, maxTags).map((tag) => (
         <p data-testid={ `${index}-${tag}-horizontal-tag` } key={ tag }>
           { tag }
@@ -33,17 +33,9 @@ function CardHorizontal({ index, recipe, cardType }) {
           height="150"
         />
       </Link>
-      { cardType !== 'doneCard'
-        ? (
-          <p data-testid={ `${index}-horizontal-top-text` }>
-            {alcoholicOrNot || `${recipe.nationality} - ${category}`}
-          </p>
-        )
-        : (
-          <p data-testid={ `${index}-horizontal-top-text` }>
-            {alcoholicOrNot || category}
-          </p>
-        )}
+      <p data-testid={ `${index}-horizontal-top-text` }>
+        {alcoholicOrNot || `${recipe.nationality} - ${category}`}
+      </p>
       <Link to={ `/${pathtype}/${id}` }>
         <p data-testid={ `${index}-horizontal-name` }>
           { name }

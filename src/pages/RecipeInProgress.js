@@ -35,8 +35,10 @@ function RecipeDetails() {
     addFavoriteRecipe,
     removeFavoriteRecipe,
     arrayIngredients,
+    addDoneRecipe,
   } = useContext(RecipeContext);
   const { location: { pathname } } = useHistory();
+  const history = useHistory();
   const { id } = useParams();
   const type = pathname.includes('foods') ? 'foods' : 'drinks';
   const fetch = type === 'foods' ? foodsApi : drinksApi;
@@ -130,6 +132,10 @@ function RecipeDetails() {
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ arrayIngredients?.length !== ingredients?.length }
+        onClick={ () => {
+          addDoneRecipe(recipe);
+          history.push('/done-recipes');
+        } }
       >
         Finalize Recipe
       </button>

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import copy from 'clipboard-copy';
+import copy from '../.././node_modules/clipboard-copy';
 import { screen, waitFor } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 import meals from '../../cypress/mocks/meals';
 import RecipeContext from '../context/RecipeContext';
+
+jest.mock('../.././node_modules/clipboard-copy');
 
 describe('Teste da Tela de Recibe Details', () => {
 
@@ -20,7 +22,9 @@ describe('Teste da Tela de Recibe Details', () => {
     afterEach(() => {
         // restore the spy created with spyOn
         jest.restoreAllMocks();
-      });      
+      });
+
+      
 
     it('Teste se são renderizados os elementos pelo data-testid', async () => {
         const { history } = renderWithRouter(<App />);
@@ -39,6 +43,8 @@ describe('Teste da Tela de Recibe Details', () => {
     });
 
     it('Teste se os botões de favorite e compartilhamento aparecem', async () => {
+
+        copy.mockImplementation( () => console.log('vai passar'));
         const { history } = renderWithRouter(<App />);
 
         history.push('/foods');
@@ -48,24 +54,18 @@ describe('Teste da Tela de Recibe Details', () => {
         userEvent.click(pega)
 
         const pegaFavorite = await screen.findByTestId('favorite-btn');
-        expect(pegaFavorite).toHaveAttribute('src', 'whiteHeartIcon.svg')
         expect(pegaFavorite).toBeInTheDocument();
+        expect(pegaFavorite).toHaveAttribute('src', 'whiteHeartIcon.svg')
         userEvent.click(pegaFavorite)
         expect(pegaFavorite).toHaveAttribute('src', 'blackHeartIcon.svg')
         // expect(addFavoriteRecipe).toHaveBeenCalled();
 
         const pegaCompartilhar = await screen.findByTestId('share-btn');
         expect(pegaCompartilhar).toBeInTheDocument();
-        
-        const spy = jest.spyOn(global, 'onClick');
-        expect(spy).toHaveBeenCalled();
-        
-        expect(copy).toBeInstanceOf(Function);
 
-        //userEvent.click(pegaCompartilhar)
- 
-        //const msgCopia = await screen.findByText(/Link copied!/i);
-        //expect(msgCopia).toBeInTheDocument();
+        userEvent.click(pegaCompartilhar)
+
+        expect(copy).toHaveBeenCalled();
 
         // await waitFor(() => {
         //     expect(msgCopia).not.toBeInTheDocument();
