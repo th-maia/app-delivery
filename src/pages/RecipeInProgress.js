@@ -34,6 +34,7 @@ function RecipeDetails() {
     getFavoriteRecipes,
     addFavoriteRecipe,
     removeFavoriteRecipe,
+    arrayIngredients,
   } = useContext(RecipeContext);
   const { location: { pathname } } = useHistory();
   const { id } = useParams();
@@ -128,15 +129,10 @@ function RecipeDetails() {
       <button
         type="button"
         data-testid="finish-recipe-btn"
+        disabled={ arrayIngredients?.length !== ingredients?.length }
       >
         Finalize Recipe
       </button>
-      {/* {status !== 'done'
-      && (
-        <StartRecipe
-          text={ status === 'undone' ? 'Start Recipe' : 'Continue Recipe' }
-        />
-      )} */}
     </div>
   );
 }

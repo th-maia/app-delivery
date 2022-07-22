@@ -6,6 +6,7 @@ import App from '../App';
 import userEvent from '@testing-library/user-event';
 import meals from '../../cypress/mocks/meals';
 import RecipeContext from '../context/RecipeContext';
+import Profile from '../pages/Profile';
 
 describe('Teste da Tela de Recibe Details', () => {
 
@@ -21,7 +22,11 @@ describe('Teste da Tela de Recibe Details', () => {
         await waitFor(() => {
             expect(btnEntre).not.toBeDisabled();
             useEvent.click(btnEntre);
-        }); 
-        
+        });
+
+        screen.getByTestId('profile-email', { name: email });
+        screen.getByTestId('profile-done-btn', { name: 'Done Recipes' });
+        screen.getByTestId('profile-favorite-btn', { name: 'Favorite Recipes' });
+        screen.getByTestId('profile-logout-btn', { name: 'Logout' });
     });
 });
