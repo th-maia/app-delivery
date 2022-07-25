@@ -6,8 +6,8 @@ import mealCategories from '../../cypress/mocks/mealCategories';
 import drinkCategories from '../../cypress/mocks/drinkCategories';
 import breakfastMeals from '../../cypress/mocks/breakfastMeals';
 import userEvent from '@testing-library/user-event';
-import meals from '../../cypress/mocks/meals';
 import cocktailDrinks from '../../cypress/mocks/cocktailDrinks';
+// import meals from '../../cypress/mocks/meals';
 
 const URL_MEALS_CATEGORIES = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'; 
 const URL_DRINKS_CATEGORIES = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
@@ -27,9 +27,9 @@ describe('Teste do Component Category Filter', () => {
         case URL_MEALS_CATEGORIES: return { json: () => Promise.resolve(mealCategories) };
         case URL_DRINKS_CATEGORIES: return { json: () => Promise.resolve(drinkCategories) };
         case URL_BREAKFAST: return { json: () => Promise.resolve(breakfastMeals) };
-        case URL_ALL: return { json: () => Promise.resolve(meals) };
+        case URL_ALL: return { json: () => Promise.resolve({}) };
         case URL_COCKTAILS: return { json: () => Promise.resolve(cocktailDrinks) };
-        default : return { json: () => Promise.resolve(meals) };
+        default : return { json: () => Promise.resolve({}) };
       }
     })
   });
@@ -80,10 +80,17 @@ describe('Teste do Component Category Filter', () => {
       expect(fetch).toHaveBeenCalled();
     });
     expect(fetch).toHaveBeenCalledWith(URL_BREAKFAST);
+    expect(await screen.findByText('Breakfast Potatoes')).toBeInTheDocument();
 
-    breakfastMeals.meals.forEach(async ({ strMeal }) => {
-      expect(await screen.findByText(strMeal)).toBeInTheDocument();
+    breakfastMeals.meals.forEach(({ strMeal }) => {
+      expect(screen.getByText(strMeal)).toBeInTheDocument();
     });
+    const output = await Promise.all(breakfastMeals.meals.map(({ strMeal }) => {
+      return screen.findByText(strMeal);
+    }));
+    expect(output).toHaveLength(breakfastMeals.meals.length);
+    
+    
 
     userEvent.click(breakfastBtn);
 

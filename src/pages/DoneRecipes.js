@@ -4,7 +4,7 @@ import RecipeFilter from '../components/RecipeFilter';
 import CardHorizontal from '../components/CardHorizontal';
 import RecipeContext from '../context/RecipeContext';
 
-function DoneRecipe() {
+function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filter, setFilter] = useState('all');
   const { getDoneRecipes } = useContext(RecipeContext);
@@ -17,7 +17,7 @@ function DoneRecipe() {
     console.log(getDoneRecipes(), filter);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
-  console.log('doneRecipes', doneRecipes);
+
   return (
     <div>
       <Header title="Done Recipes" hasSearchIcon={ false } />
@@ -34,4 +34,4 @@ function DoneRecipe() {
   );
 }
 
-export default DoneRecipe;
+export default DoneRecipes;

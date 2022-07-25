@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
-import FavoriteRecipe from '../pages/FavoriteRecipe';
 import LocalStorageMock from './mock/localstorage.js'
 
 Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock });

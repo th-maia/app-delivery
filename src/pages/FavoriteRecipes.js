@@ -5,7 +5,7 @@ import RecipeFilter from '../components/RecipeFilter';
 import RecipeContext from '../context/RecipeContext';
 import CardHorizontal from '../components/CardHorizontal';
 
-function FavoriteRecipe() {
+function FavoriteRecipes() {
   const [favorites, setFavorites] = useState([]);
   const [filter, setFilter] = useState('all');
   const { getFavoriteRecipes, removeFavoriteRecipe } = useContext(RecipeContext);
@@ -48,4 +48,4 @@ function FavoriteRecipe() {
   );
 }
 
-export default FavoriteRecipe;
+export default FavoriteRecipes;

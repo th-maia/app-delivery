@@ -4,6 +4,8 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 import LocalStorageMock from './mock/localstorage.js'
+import RecipeProvider from '../context/RecipeProvider';
+import DoneRecipes from '../pages/DoneRecipes';
 
 Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock });
 
@@ -72,8 +74,8 @@ describe('Teste da Tela de Done Recipes', () => {
         expect(screen.queryByText(/Aquamarine/i)).toBeNull();
     });
     it('Teste se ao filtar por "drink" são renderizados apenas as comidas', async () => {
-        const { history } = renderWithRouter(<App />);
-        history.push('/done-recipes');
+        const { history } = renderWithRouter(<RecipeProvider><DoneRecipes /></RecipeProvider>);
+        //history.push('/done-recipes');
         const drinkBtn = screen.getByTestId('filter-by-drink-btn');
 
         expect(await screen.findByTestId('0-horizontal-image')).toBeInTheDocument();

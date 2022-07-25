@@ -1,10 +1,5 @@
 import KEY_NAMES from './keyNames';
 
-function normalizeCategories(data) {
-  const { name } = KEY_NAMES.category;
-  return data.map(({ [name]: category }) => (category));
-}
-
 function normalizeTags(data) {
   const name = KEY_NAMES.tags;
   if (!data[name]) return [];
@@ -32,7 +27,6 @@ function normalizeSingleRecipe(recipe, isFood) {
   output.ingredients = normalizeIngredients(output);
   output.tags = normalizeTags(output);
   output.type = isFood ? 'food' : 'drink';
-  output.typeBR = isFood ? 'comida' : 'bebida';
   return output;
 }
 
@@ -46,9 +40,7 @@ const normalizeData = (data, options = {}) => {
   const recipe = isFood ? KEY_NAMES.food : KEY_NAMES.drink;
   const { list } = recipe;
   const target = data[list];
-  const output = target[0].strMeal || target[0].strDrink
-    ? normalizeListOfRecipes(target, isFood)
-    : normalizeCategories(target);
+  const output = normalizeListOfRecipes(target, isFood);
   return max ? output.slice(0, max) : output;
 };
 

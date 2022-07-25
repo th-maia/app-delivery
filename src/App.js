@@ -5,8 +5,8 @@ import RecipeProvider from './context/RecipeProvider';
 import Login from './pages/Login';
 import Recipes from './pages/Recipes';
 import Profile from './pages/Profile';
-import DoneRecipe from './pages/DoneRecipe';
-import FavoriteRecipe from './pages/FavoriteRecipe';
+import DoneRecipes from './pages/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipeDetails from './pages/RecipeDetails';
 import RecipeInProgress from './pages/RecipeInProgress';
 
@@ -45,8 +45,8 @@ function App() {
         />
 
         <Route exact path="/profile" component={ Profile } />
-        <Route exact path="/done-recipes" component={ DoneRecipe } />
-        <Route exact path="/favorite-recipes" component={ FavoriteRecipe } />
+        <Route exact path="/done-recipes" component={ DoneRecipes } />
+        <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       </Switch>
     </RecipeProvider>
   );

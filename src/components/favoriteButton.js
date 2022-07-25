@@ -14,13 +14,9 @@ const FavoriteButton = ({ handlerClick, id, testId }) => (
 );
 
 FavoriteButton.propTypes = {
-  handlerClick: PropTypes.func,
+  handlerClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
-};
-
-FavoriteButton.defaultProps = {
-  handlerClick: () => {},
 };
 
 export default FavoriteButton;
