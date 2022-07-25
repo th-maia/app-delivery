@@ -63,7 +63,25 @@ describe('Teste Tela do SearchBar', () => {
         const botaoSearch = screen.getByTestId('exec-search-btn');
         useEvent.click(botaoSearch);
 
-        // expect(drinksApi).toHaveBeenCalled();   
     });
+
+    it('Teste se ao selecionar FirstLetter', async() => {
+        const { history } = renderWithRouter(<App />)
+        history.push('/drinks')
+
+        const imgSearch = screen.getByTestId('search-top-btn');
+        useEvent.click(imgSearch);
+
+        const selectFirstLetter = await screen.findByTestId('first-letter-search-radio');
+        useEvent.click(selectFirstLetter);
+
+        const inputSearch = screen.getByTestId('search-input');
+        useEvent.type(inputSearch, 'gin')
+
+        const botaoSearch = screen.getByTestId('exec-search-btn');
+        useEvent.click(botaoSearch);
+
+
+    })
 
 });

@@ -7,7 +7,6 @@ import drinkCategories from '../../cypress/mocks/drinkCategories';
 import breakfastMeals from '../../cypress/mocks/breakfastMeals';
 import userEvent from '@testing-library/user-event';
 import cocktailDrinks from '../../cypress/mocks/cocktailDrinks';
-// import meals from '../../cypress/mocks/meals';
 
 const URL_MEALS_CATEGORIES = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'; 
 const URL_DRINKS_CATEGORIES = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
