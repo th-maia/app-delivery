@@ -1,17 +1,14 @@
-import React, { useContext } from 'react';
-import copy from 'clipboard-copy';
+import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
-import meals from '../../cypress/mocks/meals';
-import RecipeContext from '../context/RecipeContext';
 import Profile from '../pages/Profile';
 import LocalStorageMock from './mock/localstorage.js'
 
 Object.defineProperty(window, 'localStorage', { value: new LocalStorageMock });
 
-describe('Teste da Tela de Recibe Details', () => {
+describe('Teste da Tela de Profile', () => {
 
     it('Teste se são renderizados os elementos pelo data-testid', async () => {
         const { history } = renderWithRouter(<App />);
@@ -46,7 +43,7 @@ describe('Teste da Tela de Recibe Details', () => {
         expect(JSON.parse(window.localStorage.store.user)).toStrictEqual({ email });
     });
 
-    it('Teste 2', async () => {
+    it('Teste Rota para Done Recipes', async () => {
         const { history } = renderWithRouter(<Profile />);
         const doneButton = screen.getByTestId('profile-done-btn', { name: 'Done Recipes' });
         userEvent.click(doneButton);
@@ -54,7 +51,7 @@ describe('Teste da Tela de Recibe Details', () => {
         expect(pathname).toBe('/done-recipes');
     });
 
-    it('Teste 3', async () => {
+    it('Teste Rota para Favorite Recipes', async () => {
         const { history } = renderWithRouter(<Profile />);
         const favoriteButton = screen.getByTestId('profile-favorite-btn', { name: 'Favorite Recipes' });
         userEvent.click(favoriteButton);
@@ -62,7 +59,7 @@ describe('Teste da Tela de Recibe Details', () => {
         expect(pathname).toBe('/favorite-recipes');
     });
 
-    it('Teste 3', async () => {
+    it('Teste Logout Button', async () => {
         const { history } = renderWithRouter(<Profile />);
         const logoutButton = screen.getByTestId('profile-logout-btn', { name: 'Logout' });
         userEvent.click(logoutButton);

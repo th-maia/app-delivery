@@ -1,26 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function checkbox(index, { measure, ingredient }) {
-  return (
-    <label
-      htmlFor={ ingredient }
-      data-testid={ `${index}-ingredient-step` }
-    >
-      <input id={ ingredient } key={ index } type="checkbox" />
-      {`${measure} - ${ingredient}`}
-    </label>
-  );
-}
-
-function ingredientList({ ingredients, inProgress }) {
+function ingredientList({ ingredients }) {
   return (
     <ul>
       {ingredients.map(({ ingredient, measure }, index) => (
         <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
-          {inProgress
-            ? checkbox(index, `${measure} - ${ingredient}`)
-            : `${measure} - ${ingredient}`}
+          {`${measure} - ${ingredient}`}
         </li>
       ))}
     </ul>
@@ -32,11 +18,6 @@ ingredientList.propTypes = {
     ingredient: PropTypes.string,
     measure: PropTypes.string,
   })),
-  inProgress: PropTypes.bool,
-};
-
-ingredientList.defaultProps = {
-  inProgress: false,
 };
 
 export default ingredientList;
