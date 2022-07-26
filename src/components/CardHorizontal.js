@@ -23,9 +23,11 @@ function CardHorizontal({ index, recipe, cardType }) {
   const pathtype = type === 'food' ? 'foods' : 'drinks';
 
   return (
-    <div>
+    <div className="details-element">
       <Link to={ `/${pathtype}/${id}` }>
         <img
+          id="recipe-photo"
+          className="card-details"
           data-testid={ `${index}-horizontal-image` }
           alt="recipe"
           src={ image }
@@ -33,11 +35,11 @@ function CardHorizontal({ index, recipe, cardType }) {
           height="150"
         />
       </Link>
-      <p data-testid={ `${index}-horizontal-top-text` }>
+      <p className="details-element" data-testid={ `${index}-horizontal-top-text` }>
         {alcoholicOrNot || `${recipe.nationality} - ${category}`}
       </p>
       <Link to={ `/${pathtype}/${id}` }>
-        <p data-testid={ `${index}-horizontal-name` }>
+        <p className="details-element" data-testid={ `${index}-horizontal-name` }>
           { name }
         </p>
       </Link>

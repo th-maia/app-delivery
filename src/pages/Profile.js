@@ -13,7 +13,7 @@ function Profile() {
   };
 
   return (
-    <>
+    <section className="profile-container">
       <Header title="Profile" hasSearchIcon={ false } />
       <p data-testid="profile-email">{ user.email }</p>
       <button
@@ -39,7 +39,7 @@ function Profile() {
         Logout
       </button>
       <Footer />
-    </>
+    </section>
   );
 }
 

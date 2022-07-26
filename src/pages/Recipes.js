@@ -11,7 +11,7 @@ function Recipes({ type }) {
   // const type = history.pathname === '/foods' ? 'foods' : 'drinks';
 
   return (
-    <div>
+    <div className="global">
       <Header title={ type === 'foods' ? 'Foods' : 'Drinks' } />
       <CategoryFilter type={ type } />
       { type === 'foods' ? <Foods /> : <Drinks /> }

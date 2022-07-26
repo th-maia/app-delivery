@@ -18,11 +18,11 @@ function Drinks() {
   const max = getDrink.drinks && Math.min(getDrink.drinks.length, MAX_RECIPE_RENDER);
   return (
     <div>
-      <ul>
+      <ul id="adjustment" className="recipes-list">
         {getDrink?.drinks
           && getDrink.drinks.slice(0, max).map(
             (value, index) => (
-              <li key={ index }>
+              <li className="recipe" key={ index }>
                 <Card
                   index={ index }
                   name={ value.strDrink }

@@ -7,6 +7,7 @@ function RecipeFilter({ setFilter }) {
     <div id="filters">
       { FILTER_TYPES.map((filter) => (
         <button
+          className="filter-element"
           key={ filter }
           type="button"
           data-testid={ `filter-by-${filter}-btn` }

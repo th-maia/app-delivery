@@ -22,8 +22,10 @@ function Login() {
   const history = useHistory();
 
   return (
-    <div>
+    <section className="login-container">
+      <h1 className="login-heading">Faça seu login</h1>
       <input
+        className="login-input"
         type="email"
         placeholder="email"
         data-testid="email-input"
@@ -31,6 +33,7 @@ function Login() {
         value={ email }
       />
       <input
+        className="login-input"
         type="password"
         placeholder="password"
         data-testid="password-input"
@@ -38,6 +41,7 @@ function Login() {
         value={ senha }
       />
       <button
+        className="button"
         type="button"
         data-testid="login-submit-btn"
         disabled={ desabilitaBtn }
@@ -48,7 +52,7 @@ function Login() {
       >
         Enter
       </button>
-    </div>
+    </section>
   );
 }
 

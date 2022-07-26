@@ -30,7 +30,7 @@ function FavoriteRecipes() {
   }, [filter]);
 
   return (
-    <>
+    <section className="recipes-list">
       <Header title="Favorite Recipes" hasSearchIcon={ false } />
       <RecipeFilter setFilter={ handlerFilter } />
       { favorites.map((favorite, index) => (
@@ -44,7 +44,7 @@ function FavoriteRecipes() {
           />
         </div>
       ))}
-    </>
+    </section>
   );
 }
 

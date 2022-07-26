@@ -86,20 +86,25 @@ function RecipeDetails() {
   } = recipe;
   return (
     <div>
-      Recipes Details
+      <h1 id="h1">
+        Recipes Details
+      </h1>
       {isLoad && (
-        <div>
+        <div id="adjustment" className="details-container">
           <img
+            id="recipe-photo"
+            className="card-details"
             data-testid="recipe-photo"
             alt={ name }
             src={ thumb }
             width="330"
             height="330"
           />
-          <h1 data-testid="recipe-title">
+          <h1 className="details-element" data-testid="recipe-title">
             {name}
           </h1>
           <input
+            className="details-element"
             type="image"
             alt="shareIcon"
             data-testid="share-btn"
@@ -110,6 +115,7 @@ function RecipeDetails() {
             } }
           />
           <input
+            className="details-element"
             type="image"
             alt="favoriteIcon"
             data-testid="favorite-btn"
@@ -121,13 +127,23 @@ function RecipeDetails() {
             } }
           />
           { copiedMensage && <p> Link copied! </p> }
-          <h4 data-testid="recipe-category">
-            {alcoholic || category}
-          </h4>
-          <IngredientList ingredients={ ingredients } />
-          <h4 data-testid="instructions">{instructions}</h4>
+          <div className="card-details">
+            <h4 className="details-element" data-testid="recipe-category">
+              {alcoholic || category}
+            </h4>
+            <IngredientList ingredients={ ingredients } />
+            <h4
+              id="adjustment"
+              className="details-element"
+              data-testid="instructions"
+            >
+              {instructions}
+
+            </h4>
+          </div>
           {video
             && <iframe
+              className="card-details"
               width="350"
               height="315"
               data-testid="video"

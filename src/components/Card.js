@@ -9,13 +9,14 @@ const Card = (props) => {
   return (
     <Link to={ `/${path}/${id}` } data-testid={ `${index}-recipe-card` }>
       <img
+        className="recipe-img"
         alt={ name }
         data-testid={ `${index}-card-img` }
         src={ imgSrc }
         width="150"
         height="150"
       />
-      <p data-testid={ `${index}-card-name` }>{name}</p>
+      <p className="recipe-name" data-testid={ `${index}-card-name` }>{name}</p>
     </Link>
   );
 };

@@ -9,22 +9,28 @@ function Header(props) {
   const { title, hasSearchIcon } = props;
   const [mostraPesquisa, setMostraPesquisa] = useState(false);
   return (
-    <div>
-      <Link to="/profile">
-        <img
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="Imagem perfil"
-        />
-      </Link>
+    <section className="main-header">
+      <div className="heading-images">
+        <Link to="/profile">
+          <img
+            className="head-img"
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="Imagem perfil"
+          />
+        </Link>
 
-      { /* Fazer o teste do req  */}
+        { /* Fazer o teste do req  */}
 
-      {
-        hasSearchIcon
+        {
+          hasSearchIcon
         && (
           <div>
-            <button type="button" onClick={ () => setMostraPesquisa(!mostraPesquisa) }>
+            <button
+              className="img"
+              type="button"
+              onClick={ () => setMostraPesquisa(!mostraPesquisa) }
+            >
               <img
                 data-testid="search-top-btn"
                 src={ searchIcon }
@@ -34,11 +40,12 @@ function Header(props) {
             { mostraPesquisa && <SearchBar />}
           </div>
         )
-      }
-      <h1 data-testid="page-title">
+        }
+      </div>
+      <h1 className="h1" data-testid="page-title">
         {title}
       </h1>
-    </div>
+    </section>
   );
 }
 

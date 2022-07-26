@@ -15,11 +15,11 @@ function Foods() {
   const max = getFood.meals && Math.min(getFood.meals.length, MAX_RECIPE_RENDER);
   return (
     <div>
-      <ul>
+      <ul id="adjustment" className="recipes-list">
         { getFood.meals
         && getFood.meals.slice(0, max).map(
           (value, index) => (
-            <li key={ index }>
+            <li className="recipe" key={ index }>
               <Card
                 index={ index }
                 name={ value.strMeal }

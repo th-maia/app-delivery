@@ -13,12 +13,13 @@ const Card = (props) => {
       data-testid={ `${index}-recomendation-card` }
     >
       <img
+        className="recipe-img"
         alt={ name }
         src={ imgSrc }
         width="176"
         height="152"
       />
-      <p data-testid={ `${index}-recomendation-title` }>{name}</p>
+      <p className="recipe-name" data-testid={ `${index}-recomendation-title` }>{name}</p>
     </Link>
   );
 };

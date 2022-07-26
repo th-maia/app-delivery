@@ -8,6 +8,7 @@ function Footer() {
   return (
     <footer data-testid="footer">
       <input
+        className="head-img"
         type="image"
         alt="ir para página de drinks"
         src={ imgDrink }
@@ -15,6 +16,7 @@ function Footer() {
         onClick={ () => history.push('/drinks') }
       />
       <input
+        className="head-img"
         type="image"
         alt="ir para página de comidas"
         src={ imgFood }

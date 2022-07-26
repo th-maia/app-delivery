@@ -23,7 +23,7 @@ function IngredientInProgress({ ingredients, id, type }) {
 
   return (
     <div>
-      <ul>
+      <ul className="details-element">
         {hasLoad && ingredients.map(({ ingredient, measure }, index) => (
           <li key={ index }>
             <label

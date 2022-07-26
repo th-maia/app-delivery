@@ -28,9 +28,10 @@ const CategoryFilter = ({ type }) => {
   );
 
   return (
-    <ul>
+    <ul className="ul-category">
       <li>
         <button
+          className="filter-element"
           type="button"
           data-testid="All-category-filter"
           onClick={ () => (
@@ -43,6 +44,7 @@ const CategoryFilter = ({ type }) => {
       {categories.slice(0, MAX).map(({ strCategory }, index) => (
         <li key={ index }>
           <button
+            className="filter-element"
             type="button"
             data-testid={ `${strCategory}-category-filter` }
             onClick={ () => (choosenCategory === strCategory ? (

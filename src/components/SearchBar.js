@@ -9,14 +9,16 @@ function SearchBar() {
   const history = useHistory();
   const local = history.location.pathname;
   return (
-    <div>
+    <div className="search-bar">
       <input
+        className="search-component"
         type="text"
         data-testid="search-input"
         value={ searchValue }
         onChange={ ({ target }) => setSearchValue(target.value) }
       />
       <input
+        className="search-component"
         type="radio"
         data-testid="ingredient-search-radio"
         value="Ingredient"
@@ -25,6 +27,7 @@ function SearchBar() {
       />
       ingrediente
       <input
+        className="search-component"
         type="radio"
         data-testid="name-search-radio"
         value="Name"
@@ -33,6 +36,7 @@ function SearchBar() {
       />
       nome
       <input
+        className="search-component"
         type="radio"
         data-testid="first-letter-search-radio"
         value="FirstLetter"
@@ -41,6 +45,7 @@ function SearchBar() {
       />
       primeira letra
       <button
+        className="search-component"
         type="button"
         data-testid="exec-search-btn"
         onClick={ () => fetchFood(searchType, searchValue, local) }
