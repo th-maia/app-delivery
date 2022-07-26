@@ -5,7 +5,6 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 import meals from '../../cypress/mocks/meals';
-import RecipeContext from '../context/RecipeContext';
 import LocalStorageMock from './mock/localstorage';
 
 jest.mock('clipboard-copy');

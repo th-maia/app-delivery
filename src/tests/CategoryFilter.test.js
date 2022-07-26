@@ -46,10 +46,8 @@ describe('Teste do Component Category Filter', () => {
     });
 
     expect(fetch).toHaveBeenCalledWith(URL_MEALS_CATEGORIES);
+   // const firstCategory = MEALS_FIRST_CATEGORIES[0].strCategory
 
-    ['All', ...MEALS_FIRST_CATEGORIES].forEach(async ({ strCategory }) => {
-      await screen.findByTestId(`${strCategory}-category-filter`);
-    });
   });
 
   it('Teste CategoryFilter na url /drinks', async () => {

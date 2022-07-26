@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import renderWithRouter from '../helper/renderWithRouter';
 import ShareButton from '../components/ShareButton';
 import copy from 'clipboard-copy';
 import userEvent from '@testing-library/user-event';

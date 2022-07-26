@@ -42,6 +42,7 @@ describe('Teste da Tela de Recibe Details', () => {
     ]
 
     beforeEach(() => {
+    jest.spyOn(global, 'fetch');
      window.localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
      window.localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
      window.localStorage.setItem('doneRecipes', JSON.stringify(favoriteRecipes));
@@ -68,7 +69,6 @@ describe('Teste da Tela de Recibe Details', () => {
     });
 
     it('Teste se os botões de favorite e compartilhamento aparecem', async () => {
-        jest.spyOn(global, 'fetch');
         global.fetch.mockResolvedValue({
         json: jest.fn().mockResolvedValue(meals),
         });
@@ -103,10 +103,6 @@ describe('Teste da Tela de Recibe Details', () => {
 
         userEvent.click(pegaFavorite)
         expect(pegaFavorite).toHaveAttribute('src', 'whiteHeartIcon.svg')
-        
-        //const favorites2 = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
-        // expect(favorites2.some((recipe) => recipe.id === '52977')).toBeFalsy();
 
         expect(copy).toHaveBeenCalled();
     });
@@ -132,10 +128,6 @@ describe('Teste da Tela de Recibe Details', () => {
     });
 
     it('Test2', async () => {
-        jest.spyOn(global, 'fetch');
-        global.fetch.mockResolvedValue({
-        json: jest.fn().mockResolvedValue(meals),
-        });
 
         const { history } = renderWithRouter(<App />);
         history.push('/drinks/15997');
@@ -147,11 +139,6 @@ describe('Teste da Tela de Recibe Details', () => {
     });
 
     it('Test3', async () => {
-        jest.spyOn(global, 'fetch');
-        global.fetch.mockResolvedValue({
-        json: jest.fn().mockResolvedValue(meals),
-        });
-
         const { history } = renderWithRouter(<App />);
         history.push('/drinks/1asfasf');
 
