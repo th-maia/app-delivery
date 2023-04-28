@@ -11,9 +11,9 @@ Essa aplicação foi feita em React e usa os dados de duas api's, `TheMealDB API
 
 A aplicação se desenrola toda no front-end e toda a aplicação usa o React, o CSS e os componentes foram pensados para formato de telas mobile.
 
-    
-A aplicação inicia com a "<strong>tela de Login</strong>"
 ![imagem1](./assets/readme/imagem1.png)
+A aplicação inicia com a "<strong>tela de Login</strong>"
+
 
 O login deve ter:
 - o usuario deverá digitar um e-mail valido, que deve estar no formato: `@algo.algo`.
