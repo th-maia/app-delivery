@@ -6,15 +6,17 @@ Esta projeto é uma aplicação para ajudar a pessoas no hobby de cozinhar, nela
 
 Essa aplicação foi feita em React e usa os dados de duas api's, `TheMealDB API` e `The CockTailDB API`, para trazer os dados de varias receitas entre comidas e bebidas para a aplicação que irão ser utilizadas para montar a página em uma apresentação front-end.
 
-**A aplicação**
-A aplicação se desenrola toda no front-end e toda a aplicação usa o React, o CSS e os componentes foram pensados para formato de telas mobile. 
+# A aplicação App-Recipes
+
     ![imagem1](./assets/readme/imagem1.png)
+
+A aplicação se desenrola toda no front-end e toda a aplicação usa o React, o CSS e os componentes foram pensados para formato de telas mobile. 
  
- 
-A aplicação inicia com a <strong>tela de Login</strong> que deve ter:
+A aplicação inicia com a "<strong>tela de Login</strong>" que deve ter:
 - o usuario deverá digitar um e-mail valido, que deve estar no formato: `@algo.algo`.
 - a senha deve ter mais de 6 caracteres.
  
+
 Após o login, o usuario será redirecionado para a aplicação, para a tela de refeições.
     ![imagem2](./assets/readme/imagem2.png)
  
@@ -28,7 +30,7 @@ Ao selecionar uma receita será direcionado para a sua tela de detalhes. Nela po
     ![imagem6](./assets/readme/imagem6.png)
 
  
-Ao clicar <strong>start recipe</strong> irá pode marcar e os ingredientes necessarios para a receita e após marcar todos quando tiver terminado seu preparo clicar em <strong>finalize recipe</strong>
+Ao clicar "<strong>start recipe</strong>" irá pode marcar e os ingredientes necessarios para a receita e após marcar todos quando tiver terminado seu preparo clicar em <strong>finalize recipe</strong>.
     ![imagem5](./assets/readme/imagem5.png)
  
  
