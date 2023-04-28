@@ -16,12 +16,12 @@ A aplicação se desenrola toda no front-end e toda a aplicação usa o React, o
 A aplicação inicia com a "<strong>tela de Login</strong>"
 
 
-O login deve ter:
+O "<strong>login</strong>" deve ter:
 - o usuario deverá digitar um e-mail valido, que deve estar no formato: `@algo.algo`.
 - a senha deve ter mais de 6 caracteres.
  
 
-Após o login, o usuario será redirecionado para a aplicação, para a "<strong>tela de refeições</strong>".
+Após o "<strong>login</strong>", o usuario será redirecionado para a aplicação, para a "<strong>tela de refeições</strong>".
 ![imagem2](./assets/readme/imagem2.png)
 
  
