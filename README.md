@@ -10,16 +10,18 @@ Essa aplicação foi feita em React e usa os dados de duas api's, `TheMealDB API
     
 
 A aplicação se desenrola toda no front-end e toda a aplicação usa o React, o CSS e os componentes foram pensados para formato de telas mobile.
-![imagem1](./assets/readme/imagem1.png)
- 
+
+    ![imagem1](./assets/readme/imagem1.png)
 A aplicação inicia com a "<strong>tela de Login</strong>" que deve ter:
+
+
 - o usuario deverá digitar um e-mail valido, que deve estar no formato: `@algo.algo`.
 - a senha deve ter mais de 6 caracteres.
  
 
 Após o login, o usuario será redirecionado para a aplicação, para a "<strong>tela de refeições</strong>".
     ![imagem2](./assets/readme/imagem2.png)
- 
+
  
 Na parte inferior da tela temos a possibilidade de trocar entre receitas de `refeições` e `bebidas`.
     ![imagem3](./assets/readme/imagem3.png)
@@ -31,7 +33,7 @@ Ao selecionar uma receita será direcionado para a sua tela de detalhes. Nela po
 
  
 Ao clicar "<strong>start recipe</strong>" irá pode marcar e os ingredientes necessarios para a receita e após marcar todos quando tiver terminado seu preparo clicar em <strong>finalize recipe</strong>.
-    ![imagem5](./assets/readme/imagem5.png)
+![imagem5](./assets/readme/imagem5.png)
  
  
 Ao finalizar uma receita ela ficará no seu profile como done recipes ao lado das receitas favor 
